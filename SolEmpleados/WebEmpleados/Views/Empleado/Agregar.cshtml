@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agregar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-3">Nuevo empleado</h1>
+        <form action="/Empleado/Agregar" method="post">
+            <label>Nombre</label>
+            <input type="text" name="Nombre" class="form-control" />
+
+            <label>Número de empleado</label>
+            <input type="text" name="NumeroEmpleado" class="form-control" maxlength="5" />
+
+            <label>Sueldo</label>
+            <input type="number" name="Sueldo" class="form-control" />
+
+            <label>Fecha de nacimiento</label>
+            <input type="date" name="FechaNacimiento" class="form-control" />
+
+            <label>¿Es tiempo Completo?</label>
+            <div>
+                <input type="radio" name="TiempoCompleto" value="false"/>
+                <label>Si</label>
+            </div>
+            <div>
+                <input type="radio" name="TiempoCompleto" value="false"/>
+                <label>No</label>
+            </div>
+            <input type="submit" value="Guardar" class="btn btn-success"/>
+        </form>
+    </div>
+</body>
+</html>

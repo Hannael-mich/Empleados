@@ -1,0 +1,80 @@
+﻿@using WebEmpleados.Models
+@model List<E_Empleado>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-3">Empleado</h1>
+
+
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["mensaje"]
+            </div>
+        }
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger">
+                <b>Ocurrio un error: </b> @TempData["error"]
+            </div>
+        }
+
+        <a href="/Empleado/IrAgregar" class="btn btn-success mt-3 mb-3">Agregar</a> 
+
+        <form action="/Empleado/Buscar" method="post" mt-3 mb-3>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <input type="text" name="texto" class="form-control" placeholder="Buscar..." />
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Buscar" class="btn btn-success"/>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-hover table-bordered table-info">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Numero Empleado</th>
+                    <th>Sueldo</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Es Timepo Completo</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(E_Empleado empleado in Model) 
+                {
+                    <tr>
+                        <td>@empleado.IdEmpleado</td>
+                        <td>@empleado.Nombre</td>
+                        <td>@empleado.NumeroEmpleado</td>
+                        <td>@empleado.Sueldo.ToString("c")</td> <!--c = currency-->
+                        <td>@empleado.FechaNacimiento.ToString("dd/MM/yyyyy")</td>
+                        <td>@empleado.TiempoCompletoDescripcion</td>
+                        <td>@empleado.Edad</td>
+                        <td>
+                            <a href="/Empleado/Eliminar?idEmpleado=@empleado.IdEmpleado" class="btn btn-danger">Eliminar</a>
+                            <a href="/Empleado/ObtenerParaEditar?idEmpleado=@empleado.IdEmpleado" class="btn btn-info">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
